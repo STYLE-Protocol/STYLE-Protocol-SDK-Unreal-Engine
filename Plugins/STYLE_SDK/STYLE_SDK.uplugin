@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "STYLE_SDK",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "STYLE Protocol",
+	"CreatedByURL": "https://www.protocol.style",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "STYLE_SDK",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "web3Unreal",
+			"Enabled": true
+		}
+	]
+}
