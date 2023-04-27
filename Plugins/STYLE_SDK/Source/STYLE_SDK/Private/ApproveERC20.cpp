@@ -97,10 +97,7 @@ void UApproveERC20::OnResponse3(FString Response, int32 StatusCode)
 	FString Allowance = Response;
 	FString PaymentToken = NFTParsed->GetObjectField("paymentToken")->GetStringField("address");
 	
-	// TODO: currently doesn't have a solution how to compare big numbers as it seems the max possible value is int64
-	// the only solution I see is to create an endpoint and compare on the server side
-	/*
-	if (TBigInt(PaymentValue) > TBigInt(Allowance)) {
+	if (STYLEUtils::IsGreater(PaymentValue, Allowance)) {
 		TArray<FString> params;
 		params.Add(ProtocolContract);
 		params.Add(PaymentValue);
@@ -111,7 +108,7 @@ void UApproveERC20::OnResponse3(FString Response, int32 StatusCode)
 			Constants().ERC20_ABI,
 			params,
 			-1,
-			"0",
+			"",
 			5);
 		SendContractInstance->GetOnCompletedDelegate().AddUObject(this, &UApproveERC20::OnResponse4);
 		SendContractInstance->Activate();
@@ -120,22 +117,6 @@ void UApproveERC20::OnResponse3(FString Response, int32 StatusCode)
 		OnResponseOutput.Broadcast("true", 200);
 		OnCompleted.Broadcast("true", 200);
 	}
-	*/
-
-	TArray<FString> params;
-	params.Add(ProtocolContract);
-	params.Add(PaymentValue);
-
-	USendContract* SendContractInstance = USendContract::SendContract(nullptr,
-		PaymentToken,
-		"approve",
-		Constants().ERC20_ABI,
-		params,
-		-1,
-		"",
-		5);
-	SendContractInstance->GetOnCompletedDelegate().AddUObject(this, &UApproveERC20::OnResponse4);
-	SendContractInstance->Activate();
 }
 
 void UApproveERC20::OnResponse4(FString Response, int32 StatusCode)

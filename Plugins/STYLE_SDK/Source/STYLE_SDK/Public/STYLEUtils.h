@@ -13,4 +13,5 @@ public:
 
 	static FString SerializeStringArray(const TArray<FString>& StringArray);
 	static FString SerializeStringArrayDelimiter(const TArray<FString>& StringArray, const TCHAR* Delimiter);
+	static bool IsGreater(FString str1, FString str2);
 };

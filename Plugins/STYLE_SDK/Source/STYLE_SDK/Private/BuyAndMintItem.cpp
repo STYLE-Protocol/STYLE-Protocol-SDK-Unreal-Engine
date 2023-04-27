@@ -92,7 +92,7 @@ void UBuyAndMintItem::OnResponse2(FString Response, int32 StatusCode)
 		Constants().PROTOCOL_ABI,
 		params,
 		-1,
-		"0",
+		"",
 		5);
 	SendContractInstance->GetOnCompletedDelegate().AddUObject(this, &UBuyAndMintItem::OnResponse3);
 	SendContractInstance->Activate();

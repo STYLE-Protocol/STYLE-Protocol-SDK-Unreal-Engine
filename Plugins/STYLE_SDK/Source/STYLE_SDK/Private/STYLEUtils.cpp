@@ -48,3 +48,25 @@ FString STYLEUtils::SerializeStringArrayDelimiter(const TArray<FString>& StringA
 
 	return Joined;
 }
+
+bool STYLEUtils::IsGreater(FString str1, FString str2) {
+    // Compare lengths
+    if (str1.Len() > str2.Len()) {
+        return true;
+    }
+    else if (str1.Len() < str2.Len()) {
+        return false;
+    }
+
+    // Compare digits
+    for (int k = 0; k < str1.Len(); k++) {
+        if (str1[k] > str2[k]) {
+            return true;
+        }
+        else if (str1[k] < str2[k]) {
+            return false;
+        }
+    }
+
+    return false;
+}
