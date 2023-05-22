@@ -17,6 +17,9 @@ class STYLE_SDK_API UGetOwnedDerivatives : public USTYLEAsyncRequest
 public:
 	UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true", WorldContext = "WorldContextObject"), Category = "style.sdk|generic")
 		static UGetOwnedDerivatives* GetOwnedDerivatives(
+			TArray<FString> metaverseFilter,
+			TArray<FString> typeFilter,
+			TArray<FString> subtypeFilter,
 			FString userProof,
 			int32 chainId = 5
 		);

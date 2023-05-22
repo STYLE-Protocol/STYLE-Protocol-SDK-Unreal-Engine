@@ -22,7 +22,7 @@ void STYLE_SDKGetOwnedDerivatives::Define()
 				[this](const FDoneDelegate TestDone)
 				{
 					TestDoneDelegate = TestDone;
-					UGetOwnedDerivatives* GetOwnedDerivativesInstance = UGetOwnedDerivatives::GetOwnedDerivatives(FString(TEXT("{\"signature\":\"0xb15175d683d88007e8121811122abd16895b7e2ad47aaa64d5883f38d0c57c434a695c6ef01526ca94a9dce6aa38221afd31d80a65468d00b62f672beab753c51b\",\"walletAddress\":\"0x67701e71F9412Af1BcB2D77897F40139B6Ccc073\"}")));
+					UGetOwnedDerivatives* GetOwnedDerivativesInstance = UGetOwnedDerivatives::GetOwnedDerivatives(TArray<FString>(), TArray<FString>(), TArray<FString>(), FString(TEXT("{\"signature\":\"0xb15175d683d88007e8121811122abd16895b7e2ad47aaa64d5883f38d0c57c434a695c6ef01526ca94a9dce6aa38221afd31d80a65468d00b62f672beab753c51b\",\"walletAddress\":\"0x67701e71F9412Af1BcB2D77897F40139B6Ccc073\"}")));
 					GetOwnedDerivativesInstance->GetOnCompletedDelegate().AddRaw(this, &STYLE_SDKGetOwnedDerivatives::OnResponse);
 					GetOwnedDerivativesInstance->Activate();
 				});

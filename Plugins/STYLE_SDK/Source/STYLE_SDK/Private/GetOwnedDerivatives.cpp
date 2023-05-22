@@ -8,6 +8,9 @@
 #include "STYLEUtils.h"
 
 UGetOwnedDerivatives* UGetOwnedDerivatives::GetOwnedDerivatives(
+	TArray<FString> metaverseFilter,
+	TArray<FString> typeFilter,
+	TArray<FString> subtypeFilter,
 	FString userProof,
 	int32 chainId)
 {
@@ -21,6 +24,25 @@ UGetOwnedDerivatives* UGetOwnedDerivatives::GetOwnedDerivatives(
 	args.Add(FStringFormatArg(userProof));
 
 	FString url = FString::Format(TEXT("https://{0}/api/nfts/get-owned-derivatives?endpoint={1}&alchemyKey={2}&userProof={3}"), args);
+	
+	if (metaverseFilter.Num() != 0) {
+		TArray< FStringFormatArg > argsT;
+		argsT.Add(FStringFormatArg(url));
+		argsT.Add(FStringFormatArg(STYLEUtils::SerializeStringArray(metaverseFilter)));
+		url = FString::Format(TEXT("{0}&metaverseFilter={1}"), argsT);
+	}
+	if (typeFilter.Num() != 0) {
+		TArray< FStringFormatArg > argsT;
+		argsT.Add(FStringFormatArg(url));
+		argsT.Add(FStringFormatArg(STYLEUtils::SerializeStringArray(typeFilter)));
+		url = FString::Format(TEXT("{0}&typeFilter={1}"), argsT);
+	}
+	if (subtypeFilter.Num() != 0) {
+		TArray< FStringFormatArg > argsT;
+		argsT.Add(FStringFormatArg(url));
+		argsT.Add(FStringFormatArg(STYLEUtils::SerializeStringArray(subtypeFilter)));
+		url = FString::Format(TEXT("{0}&subtypeFilter={1}"), argsT);
+	}
 
 	UGetOwnedDerivatives* GetOwnedDerivativesInstance = NewObject<UGetOwnedDerivatives>();
 	GetOwnedDerivativesInstance->RequestBuilder.Url = url;
